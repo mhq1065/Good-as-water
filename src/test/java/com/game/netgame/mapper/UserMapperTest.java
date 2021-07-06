@@ -13,10 +13,16 @@ public class UserMapperTest {
     @Autowired
     private UserMapper userMapper;
     @Test
-    void insert(){
+    public void insert(){
         User user = new User();
         user.setUsername("Tom");
         user.setPassword("123456");
         user.setGender(0);
+        userMapper.insertUser(user);
+    }
+    @Test
+    public void findByUsername(){
+        User user = userMapper.findByUsername("jack");
+        System.out.println(user.getUid());
     }
 }

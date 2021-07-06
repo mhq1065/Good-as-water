@@ -12,7 +12,6 @@
         <result column="modified_time" property="modifiedTime"></result>
     </resultMap>
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="uid">
-
         insert
         t_user
         (username, password, salt, phone, email, gender, avatar, is_delete, created_user, created_time, modified_user, modified_time)

@@ -1,12 +1,17 @@
 package com.game.netgame.entity;
 
-public class User extends  BaseEntity {
+public class User extends BaseEntity {
     private Integer uid;
     private String username;
     private String password;
     private String salt;
     private String phone;
+    private String email;
+    private Integer gender;
+    private String avatar;
+    private Integer isDelete;
 
+    public User(){};
     public Integer getUid() {
         return uid;
     }
@@ -79,9 +84,6 @@ public class User extends  BaseEntity {
         this.isDelete = isDelete;
     }
 
-    private String email;
-    private Integer gender;
-    private String avatar;
-    private Integer isDelete;
+
 
 }

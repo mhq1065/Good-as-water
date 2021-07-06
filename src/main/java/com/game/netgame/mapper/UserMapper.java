@@ -1,17 +1,15 @@
 package com.game.netgame.mapper;
 
 import com.game.netgame.entity.User;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
-@Mapper
+//@Mapper
 public interface UserMapper {
     /**
      * @User user
      * 插入用户
      */
-    void insert(User user);
+    public void insertUser(User user);
 
     /**
      * @String username
@@ -20,5 +18,5 @@ public interface UserMapper {
      */
     @ResultMap("UserEntityMap")
     @Select("select * from `t_user` where username = #{username}")
-    User findByUsername(String username);
+    public User findByUsername(String username);
 }
