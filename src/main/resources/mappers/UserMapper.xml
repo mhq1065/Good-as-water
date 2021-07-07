@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+<!--绑定命名空间-->
 <mapper namespace="com.game.netgame.mapper.UserMapper">
+    <!--    查询映射-->
     <resultMap id="UserEntityMap" type="com.game.netgame.entity.User">
         <id column="uid" property="uid"></id>
         <result column="is_delete" property="isDelete"></result>
@@ -11,6 +12,8 @@
         <result column="modified_user" property="modifiedUser"></result>
         <result column="modified_time" property="modifiedTime"></result>
     </resultMap>
+    <!--    insert 查询 -->
+    <!--    通过id与函数同名的约定的方式进行绑定-->
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="uid">
         insert
         t_user

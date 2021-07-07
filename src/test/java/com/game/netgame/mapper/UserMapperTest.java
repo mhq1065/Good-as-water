@@ -22,7 +22,7 @@ public class UserMapperTest {
     }
     @Test
     public void findByUsername(){
-        User user = userMapper.findByUsername("jack");
-        System.out.println(user.getUid());
+        User user = userMapper.findByUsername("T");
+        System.err.println(user);
     }
 }
