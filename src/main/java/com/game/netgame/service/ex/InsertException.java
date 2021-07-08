@@ -1,6 +1,6 @@
 package com.game.netgame.service.ex;
 
-public class InsertException extends ServiceException{
+public class InsertException extends ServiceException {
     public InsertException() {
         super();
     }

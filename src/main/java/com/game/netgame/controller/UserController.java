@@ -12,28 +12,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "user")
-public class UserController {
+@RequestMapping("user")
+public class UserController extends BaseController {
     @Autowired
     IUserService userService;
 
     @RequestMapping("reg")
     public JsonResult<Void> index(User user) {
-        JsonResult<Void> result=new JsonResult<Void>();
-        try {
-            userService.reg(user);
-            result.setState(200);
-            result.setMessage("注册成功");
-        } catch (UsernameDuplicateException e) {
-            result.setState(402);
-            result.setMessage("用户名被占用");
-            e.printStackTrace();
-        }catch (InsertException e){
-            result.setState(403);
-            result.setMessage("插入数据异常");
-            e.printStackTrace();
-        }
-        return result;
+        System.out.println("111111");
+        userService.reg(user);
+        return new JsonResult<Void>(OK);
     }
 
+    @RequestMapping("login")
+    public JsonResult<User> login(String username, String password) {
+        User u = userService.login(username, password);
+        return new JsonResult<>(OK, u);
+    }
 }

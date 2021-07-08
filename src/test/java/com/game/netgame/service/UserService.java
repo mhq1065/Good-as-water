@@ -16,21 +16,27 @@ public class UserService {
     @Autowired
     private IUserService userService;
 
-    public static String getRandomString(int length){
-        String str="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        Random random=new Random();
-        StringBuffer sb=new StringBuffer();
-        for(int i=0;i<length;i++){
-            int number=random.nextInt(62);
+    public static String getRandomString(int length) {
+        String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Random random = new Random();
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < length; i++) {
+            int number = random.nextInt(62);
             sb.append(str.charAt(number));
         }
         return sb.toString();
     }
+
     @Test
     public void reg() {
         User user = new User();
-        user.setUsername(getRandomString(5));
-        user.setPassword("123zdfvgzdfvzdfv");
+        user.setUsername("e1");
+        user.setPassword("123456");
         userService.reg(user);
+    }
+
+    @Test
+    public void login() {
+        userService.login("abc", "123456");
     }
 }
