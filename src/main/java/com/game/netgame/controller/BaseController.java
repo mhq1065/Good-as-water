@@ -4,8 +4,20 @@ import com.game.netgame.service.ex.*;
 import com.game.netgame.utils.JsonResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import javax.servlet.http.HttpSession;
+
 public class BaseController {
     public static final int OK = 200;
+
+    protected Integer getUidFormSession(HttpSession session) {
+        return Integer.valueOf(
+                session.getAttribute("uid").toString());
+    }
+
+    protected final String getUsernameFormSession(HttpSession session) {
+        return session.getAttribute("username").toString();
+    }
+
 
     @ExceptionHandler(ServiceException.class)
     public JsonResult<Void> handleException(Throwable e) {
