@@ -11,7 +11,24 @@ public class User extends BaseEntity {
     private String avatar;
     private Integer isDelete;
 
-    public User(){};
+    public User() {
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "uid=" + uid +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", gender=" + gender +
+                ", avatar='" + avatar + '\'' +
+                ", isDelete=" + isDelete +
+                '}';
+    }
+
     public Integer getUid() {
         return uid;
     }
@@ -83,7 +100,6 @@ public class User extends BaseEntity {
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
     }
-
 
 
 }

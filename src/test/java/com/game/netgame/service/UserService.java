@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Date;
 import java.util.Random;
 
 @SpringBootTest
@@ -38,5 +39,10 @@ public class UserService {
     @Test
     public void login() {
         userService.login("abc", "123456");
+    }
+
+    @Test
+    public void updatePassword(){
+        userService.changePassword(24,"you","1234567","1234566");
     }
 }

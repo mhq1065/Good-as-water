@@ -34,5 +34,11 @@
         #{modifiedTime}
         )
     </insert>
-
+    <update id="updatePasswordByUid">
+        update t_user
+        set password      = #{password},
+            modified_time = #{ModifiedTime},
+            modified_user = #{ModifiedUser}
+        where uid = #{uid}
+    </update>
 </mapper>

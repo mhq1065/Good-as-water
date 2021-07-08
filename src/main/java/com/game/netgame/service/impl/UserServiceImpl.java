@@ -3,10 +3,7 @@ package com.game.netgame.service.impl;
 import com.game.netgame.entity.User;
 import com.game.netgame.mapper.UserMapper;
 import com.game.netgame.service.IUserService;
-import com.game.netgame.service.ex.PasswordNotMatchException;
-import com.game.netgame.service.ex.UserNotFoundException;
-import com.game.netgame.service.ex.UsernameDuplicateException;
-import com.game.netgame.service.ex.InsertException;
+import com.game.netgame.service.ex.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
@@ -20,6 +17,27 @@ public class UserServiceImpl implements IUserService {
     // 声明Mapper对象
     @Autowired
     private UserMapper userMappper;
+
+    @Override
+    public void changePassword(Integer uid, String username, String oldPassword, String newPassword) {
+        // 判断用户是否存在
+        User user = userMappper.findByUid(uid);
+        if (user == null) {
+            throw new UserNotFoundException("用户不存在");
+        }
+        // 获取salt
+        String salt = user.getSalt();
+        // 校验旧密码
+        if (user.getPassword() == getMd5Password(oldPassword, salt)) {
+            throw new PasswordNotMatchException("原密码错误");
+        }
+        // 更新密码
+        Integer result = userMappper.updatePasswordByUid(uid, getMd5Password(newPassword, salt), username, new Date());
+        // update 异常捕获
+        if (result != 1) {
+            throw new UpdateException("更新失败");
+        }
+    }
 
     @Override
     public void reg(User user) {

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Date;
+
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class UserMapperTest {
@@ -24,5 +26,15 @@ public class UserMapperTest {
     public void findByUsername(){
         User user = userMapper.findByUsername("T");
         System.err.println(user);
+    }
+    @Test
+    public void updatePasswordByUid() {
+        Date d = new Date();
+        userMapper.updatePasswordByUid(23, "2333", "hack", d);
+    }
+    @Test
+    public void findByUid() {
+        User u = userMapper.findByUid(23);
+        System.out.println(u);
     }
 }
