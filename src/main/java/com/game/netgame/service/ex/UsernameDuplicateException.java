@@ -1,6 +1,6 @@
 package com.game.netgame.service.ex;
 
-public class UsernameDuplicateException extends RuntimeException {
+public class UsernameDuplicateException extends ServiceException {
     public UsernameDuplicateException() {
         super();
     }

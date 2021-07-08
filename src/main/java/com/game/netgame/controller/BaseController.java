@@ -9,7 +9,7 @@ public class BaseController {
 
     @ExceptionHandler(ServiceException.class)
     public JsonResult<Void> handleException(Throwable e) {
-        System.out.println("ServiceException");
+        System.out.println("Catch ServiceException");
         JsonResult<Void> result = new JsonResult<>();
         if (e instanceof UsernameDuplicateException) {
             result.setState(402);
@@ -18,10 +18,10 @@ public class BaseController {
             result.setState(403);
             result.setMessage("密码错误");
         } else if (e instanceof UserNotFoundException) {
-            result.setState(403);
+            result.setState(404);
             result.setMessage("用户不存在");
         } else if (e instanceof InsertException) {
-            result.setState(403);
+            result.setState(405);
             result.setMessage("插入数据异常");
         }
         return result;

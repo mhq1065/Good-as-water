@@ -1,6 +1,6 @@
 package com.game.netgame.service.ex;
 
-public class UserNotFoundException extends RuntimeException {
+public class UserNotFoundException extends ServiceException {
     public UserNotFoundException() {
         super();
     }

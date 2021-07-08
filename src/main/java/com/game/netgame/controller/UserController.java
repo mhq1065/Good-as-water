@@ -19,7 +19,6 @@ public class UserController extends BaseController {
 
     @RequestMapping("reg")
     public JsonResult<Void> index(User user) {
-        System.out.println("111111");
         userService.reg(user);
         return new JsonResult<Void>(OK);
     }
