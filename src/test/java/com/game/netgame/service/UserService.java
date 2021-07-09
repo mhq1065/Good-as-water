@@ -45,4 +45,21 @@ public class UserService {
     public void updatePassword(){
         userService.changePassword(24,"you","1234567","1234566");
     }
+
+    @Test
+    public void changeInfo(){
+        User user = new User();
+        user.setUid(27);
+        user.setPhone("1130");
+        user.setEmail("110@10.com");
+        user.setGender(1);
+        user.setModifiedUser("admin356");
+        user.setModifiedTime(new Date());
+        userService.changeInfo(27,"930",user);
+    }
+
+    @Test
+    public void getByUid() {
+        System.out.println(userService.getByUid(27));
+    }
 }

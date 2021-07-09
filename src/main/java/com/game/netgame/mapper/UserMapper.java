@@ -19,15 +19,18 @@ public interface UserMapper {
      * 使用注解
      */
     @ResultMap("UserEntityMap")
-
     @Select("select * from `t_user` where username = #{username}")
     User findByUsername(String username);
 
 
     Integer updatePasswordByUid(Integer uid,
-                                       String password,
-                                       @Param("ModifiedUser") String mu,
-                                       @Param("ModifiedTime") Date mt);
-    @Select("select * from `t_user` where uid = #{uid}")
+                                String password,
+                                @Param("ModifiedUser") String mu,
+                                @Param("ModifiedTime") Date mt);
+
+    @ResultMap("UserEntityMap")
+    @Select("select * from t_user where uid = #{uid}")
     User findByUid(Integer uid);
+
+    Integer updateInfoByUid(User user);
 }

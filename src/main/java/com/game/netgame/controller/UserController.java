@@ -43,4 +43,29 @@ public class UserController extends BaseController {
         userService.changePassword(userid, username, oldPassword, newPassword);
         return new JsonResult<Void>(OK);
     }
+
+    @RequestMapping("change_info")
+    public JsonResult<Void> changeInfo(User user, HttpSession session) {
+        Integer userid = getUidFromSession(session);
+        if (userService.getByUid(userid) == null) {
+            System.out.println("用户不存在");
+            throw new UserNotFoundException("用户不存在");
+        }
+        String username = getUsernameFromSession(session);
+        System.out.println(String.format("%d:%s is changing info.",userid, username));
+        System.out.println(user);
+        userService.changeInfo(userid, username, user);
+        return new JsonResult<Void>(Modified);
+    }
+
+    @RequestMapping("user_info")
+    public JsonResult<User> getUserInfo(HttpSession session){
+        Integer userid = getUidFromSession(session);
+        User user = userService.getByUid(userid);
+        if (user == null) {
+            System.out.println("用户不存在");
+            throw new UserNotFoundException("用户不存在");
+        }
+        return new JsonResult<>(OK, user);
+    }
 }

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 public class BaseController {
     public static final int OK = 200;
+    public static final int Modified = 201;
 
     protected Integer getUidFormSession(HttpSession session) {
         return Integer.valueOf(

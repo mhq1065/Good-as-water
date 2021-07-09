@@ -41,4 +41,13 @@
             modified_user = #{ModifiedUser}
         where uid = #{uid}
     </update>
+    <update id="updateInfoByUid">
+        update t_user set
+        <if test="phone!=null">phone=#{phone},</if>
+        <if test="email!=null">email=#{email},</if>
+        <if test="gender!=null">gender=#{gender},</if>
+        modified_user=#{modifiedUser},
+        modified_time=#{modifiedTime}
+        where uid = #{uid}
+    </update>
 </mapper>

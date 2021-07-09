@@ -40,6 +40,32 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public void changeInfo(Integer uid, String username, User user) {
+        User u = new User();
+        u.setUid(uid);
+        u.setModifiedUser(username);
+        u.setGender(user.getGender());
+        u.setModifiedUser(user.getModifiedUser());
+        u.setModifiedTime(new Date());
+        u.setPhone(user.getPhone());
+        u.setEmail(user.getEmail());
+        Integer result = userMappper.updateInfoByUid(u);
+        if (result != 1) {
+            throw new UpdateException("更新失败");
+        }
+    }
+
+    @Override
+    public User getByUid(Integer uid) {
+        User result = userMappper.findByUid(uid);
+        if (result == null || result.getIsDelete() == 1) {
+            throw new UserNotFoundException("用户数据不存在");
+        }
+        // 此处本来应该做一些数据过滤处理，减少不必要的数据传输
+        return result;
+    }
+
+    @Override
     public void reg(User user) {
         String username = user.getUsername();
         System.out.println(username + " is registering.");

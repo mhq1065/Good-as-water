@@ -1,5 +1,7 @@
 package com.game.netgame.entity;
 
+import java.util.Date;
+
 public class User extends BaseEntity {
     private Integer uid;
     private String username;

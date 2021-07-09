@@ -6,9 +6,18 @@ import org.apache.ibatis.annotations.Param;
 import java.util.Date;
 
 public interface IUserService {
-    public void reg(User user);
+    void reg(User user);
 
-    public User login(String username, String password);
+    User login(String username, String password);
 
-    public void changePassword(Integer uid, String username, String oldPassword, String newPassword);
+    void changePassword(Integer uid, String username, String oldPassword, String newPassword);
+
+    /**
+     * @param uid 用户uid
+     * @param username 修改者用户名
+     * @param user 用户信息
+     */
+    void changeInfo(Integer uid, String username, User user);
+
+    User getByUid(Integer uid);
 }
