@@ -28,7 +28,7 @@ public class UserServiceImpl implements IUserService {
         // 获取salt
         String salt = user.getSalt();
         // 校验旧密码
-        if (user.getPassword() == getMd5Password(oldPassword, salt)) {
+        if (!user.getPassword().equals(getMd5Password(oldPassword, salt))) {
             throw new PasswordNotMatchException("原密码错误");
         }
         // 更新密码
@@ -71,14 +71,14 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User login(String username, String password) {
-        // 获取密码
-        User user = userMappper.findByUsername(username);
-        String salt = user.getSalt();
-        System.out.println(username + " is logging in .");
         // 判断用户是否存在
         if (userMappper.findByUsername(username) == null) {
             throw new UserNotFoundException("用户不存在");
         }
+        // 获取密码
+        User user = userMappper.findByUsername(username);
+        String salt = user.getSalt();
+        System.out.println(username + " is logging in .");
         // 判断密码是否正确
         // 字符串判断需要使用equals
         if (!getMd5Password(password, salt).equals(user.getPassword())) {

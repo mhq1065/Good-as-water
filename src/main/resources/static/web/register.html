@@ -151,8 +151,10 @@
 <script>
 	function login() {
 		$.ajax({
-			url: `/user/reg?${$("#form-reg").serialize()}`,
+			url: `/user/reg`,
 			type: "POST",
+			data:$("#form-reg").serialize(),
+			dataType:"json",
 			success: (json) => {
 				console.log(json)
 				if (json.state == 200) {

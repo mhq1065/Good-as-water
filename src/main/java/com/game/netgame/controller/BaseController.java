@@ -39,4 +39,11 @@ public class BaseController {
         return result;
     }
 
+    protected String getUsernameFromSession(HttpSession session){
+        return (String) session.getAttribute("username");
+    }
+    protected Integer getUidFromSession(HttpSession session){
+        return (Integer)session.getAttribute("uid");
+    }
+
 }
